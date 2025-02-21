@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TTEC & Pansophic Landing Page</title>
+  <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Figtree', sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 4rem;
+      background-color: #236AF4;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 2;
+      position: relative;
+    }
+    .ttec-logo-container {
+      position: relative;
+      display: inline-block;
+    }
+    .ttec-logo-container::before {
+      content: "";
+      position: absolute;
+      top: -16px;
+      left: -20px;
+      width: calc(100% + 33px);
+      height: calc(100% + 46px);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border: 1px solid #fff;
+      border-top: 0;
+      background: var(--ttec-medium-blue, #2B3843);
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+    .ttec-logo-container:hover::before {
+      background: #236AF4;
+    }
+    .logo {
+      max-height: 43px;
+      transition: transform 0.3s ease-in-out;
+      position: relative;
+      display: block;
+      z-index: 2;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+    }
+    .left-column {
+      position: relative;
+      width: 60%;
+      background: url('Images/background.webp') no-repeat center center;
+      background-size: cover;
+      clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+    }
+    .left-column::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.425);
+      z-index: 2;
+    }
+    .landing-caption {
+      position: absolute;
+      bottom: 30%;
+      left: 20%;
+      color: #1a5aa5;
+      font-size: 3rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 8px rgb(255, 255, 255);
+      z-index: 2;
+      display: flex;
+      gap: 1rem;
+      transition: all 1s ease-in-out;
+      justify-content: flex-start;
+    }
+    .landing-caption.center {
+      left: 45%;
+      transform: translateX(-45%);
+      justify-content: center;
+    }
+    .landing-caption img.caption-logo {
+      width: 200px;
+      height: 300px;
+      object-fit: contain;
+    }
+    .right-column .sub-header {
+      position: absolute;
+      top: 13%;
+      width: 100%;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #3f5665;
+      z-index: 3;
+    }
+    .right-column {
+      width: 40%;
+      display: grid;
+      grid-template-columns: repeat(2, 0.2fr);
+      grid-template-rows: repeat(2, 0.2fr);
+      gap: 1rem;
+      padding: 2rem;
+      align-items: center;
+      align-content: center;
+      justify-items: center;
+      justify-content: center;
+      background-color: #fff;
+      position: relative;
+    }
+    .box {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 180px;
+      height: 180px;
+      border-radius: 17px;
+      text-decoration: none;
+      color: #fff;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .right-column .box:nth-child(3),
+    .right-column .box:nth-child(4) {
+      background-color: #2B3843;
+    }
+    .right-column .box:nth-child(2),
+    .right-column .box:nth-child(5) {
+      background-color: #236AF4;
+    }
+    .box:hover {
+      transform: scale(1.2);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      background-color: rgba(43,56,67,0.9);
+      z-index: 1;
+    }
+    .box img.box-logo {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin: 1rem 0;
+      transition: transform 0.3s ease;
+    }
+    .box:hover img.box-logo {
+      transform: scale(1.1);
+    }
+    .box h2 {
+      font-weight: 600;
+      font-size: 1.3rem;
+      text-align: left;
+      margin: 0;
+      padding: 0 1rem;
+      z-index: 1;
+      width: 100%;
+    }
+    .hover-card {
+      position: absolute;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 0.5rem;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none;
+      z-index: 2;
+      font-size: 1rem;
+    }
+    .box:hover .hover-card {
+      opacity: 1;
+    }
+    footer {
+      background-color: rgb(255 255 255 / 90%);
+      font-weight: 100;
+      color: #000000;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      z-index: 2;
+    }
+    @media (max-width: 600px) {
+      main {
+        flex-direction: column;
+      }
+      .left-column, .right-column {
+        width: 100%;
+        clip-path: none;
+      }
+      .right-column {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1rem;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+      }
+      .box h2 {
+        font-size: 1rem;
+      }
+      .hover-card {
+        font-size: 0.9rem;
+      }
+    }
+    #typewriter {
+      display: block;
+      text-align: left;
+      white-space: pre-wrap;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const phrases = ["Talent.", "Technology.", "Empathy.", "Connected."];
+      const typewriter = document.getElementById("typewriter");
+      const caption = document.querySelector('.landing-caption');
+      let currentPhrase = 0;
+      let currentLetter = 0;
+      let isDeleting = false;
+      const typingSpeed = 100;
+      const pauseTime = 950; // pause after finishing a phrase
+      const moveToMiddleTime = 1000; // logo moves to center in 1 sec (via CSS transition)
+      const holdTime = 5000; // hold in center for 5 sec
+      const moveBackTime = 1000; // logo moves back in 1 sec
+      
+      function type() {
+        let displayText = "";
+        for (let i = 0; i < currentPhrase; i++) {
+          displayText += phrases[i] + "<br>";
+        }
+        
+        if (!isDeleting) {
+          displayText += phrases[currentPhrase].substring(0, currentLetter + 1);
+          typewriter.innerHTML = displayText;
+          currentLetter++;
+          if (currentLetter > phrases[currentPhrase].length) {
+            if (currentPhrase === phrases.length - 1) {
+              setTimeout(() => {
+                typewriter.innerHTML = "";
+                caption.classList.add('center');
+                setTimeout(() => {
+                  caption.classList.remove('center');
+                  setTimeout(() => {
+                    currentPhrase = 0;
+                    currentLetter = 0;
+                    isDeleting = false;
+                    type();
+                  }, moveBackTime);
+                }, holdTime);
+              }, pauseTime);
+              return;
+            } else {
+              setTimeout(() => {
+                currentPhrase++;
+                currentLetter = 0;
+                type();
+              }, pauseTime);
+              return;
+            }
+          } else {
+            setTimeout(type, typingSpeed);
+          }
+        } else {
+          displayText += phrases[currentPhrase].substring(0, currentLetter);
+          typewriter.innerHTML = displayText;
+          currentLetter--;
+          if (currentLetter < 0) {
+            if (currentPhrase > 0) {
+              currentPhrase--;
+              currentLetter = phrases[currentPhrase].length;
+              setTimeout(type, typingSpeed);
+              return;
+            } else {
+              isDeleting = false;
+              currentPhrase = 0;
+              currentLetter = 0;
+              setTimeout(type, typingSpeed);
+              return;
+            }
+          } else {
+            setTimeout(type, typingSpeed);
+          }
+        }
+      }
+      
+      type();
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <a href="Main.html">
+      <div class="ttec-logo-container">
+          <img src="Images/TTEC.png" alt="TTEC Logo" class="logo" style="top: 15px;">
+        </div>
+    </a>
+    <a href="https://pansophiclearning.com/" target="_blank">
+      <img src="Images/Pansophic.png" alt="Pansophic Learning Logo" class="logo">
+    </a>
+  </header>
+  
+  <main>
+    <div class="left-column">
+      <div class="landing-caption">
+        <img src="Images/ttec_main.png" alt="Landing Logo" class="caption-logo">
+        <div style="height: 300px; display: flex; align-items: center;">
+          <span id="typewriter" style="height: 230px;"></span>
+        </div>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="sub-header">Navigate the World of TTEC</div>
+      <a href="Pansophic Sites.html" target="_blank" class="box">
+        <img src="Images/site_location.png" alt="ELA Logo" class="box-logo">
+        <h2>Pansophic ELA Sites</h2>
+        <div class="hover-card">Explore Pansophic ELA sites</div>
+      </a>
+      <a href="Government Sites.html" target="_blank" class="box">
+        <img src="Images/School.png" alt="Government Logo" class="box-logo">
+        <h2>Government Sites</h2>
+        <div class="hover-card">Visit Government sites</div>
+      </a>  
+      <a href="Line Leader.html" target="_blank" class="box">
+        <img src="Images/lineleader.png" alt="Line Leader Logo" class="box-logo">
+        <h2>Line Leader</h2>
+        <div class="hover-card">Discover Line Leader resources</div>
+      </a>
+      <a href="Sharepoint.html" target="_blank" class="box">
+        <img src="Images/sharepoint.png" alt="Sharepoint Logo" class="box-logo">
+        <h2>Sharepoint Materials</h2>
+        <div class="hover-card">Access ELA SharePoint learning material</div>
+      </a>
+    </div>
+  </main>
+  <footer>
+    &copy; 2025 TTEC & Pansophic Learning. All rights reserved.
+  </footer>
+</body>
+</html>
